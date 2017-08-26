@@ -70,9 +70,6 @@ public class AddEditNoteActivity extends AppCompatActivity {
                 break;
             case EDIT:
 
-//                editTextContent.setEnabled(true);
-//                editTextTitle.setEnabled(true);
-
                 editTextTitle.setFocusable(true);
                 editTextContent.setFocusable(true);
                 editTextTitle.setFocusableInTouchMode(true);
@@ -87,9 +84,6 @@ public class AddEditNoteActivity extends AppCompatActivity {
                     editTextTitle.setText(noteTitle);
                     editTextContent.setText(noteContent);
                 }
-
-//                editTextContent.setEnabled(false);
-//                editTextTitle.setEnabled(false);
 
                 editTextTitle.setFocusable(false);
                 editTextContent.setFocusable(false);

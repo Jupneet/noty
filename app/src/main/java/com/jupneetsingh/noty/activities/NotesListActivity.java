@@ -75,13 +75,17 @@ public class NotesListActivity extends AppCompatActivity {
         int sizeOfNotes = notes.size();
 
         if (sizeOfNotes > 0) {
-            noResultFoundEmptyState.setVisibility(View.GONE);
-            listOfNotesAdapter = new NoteListAdapter(this, notes);
-            float spacingInPixels = getResources().getDimension(R.dimen.spacing);
-            listOfNotes.addItemDecoration(new SpacesItemDecoration((int) spacingInPixels));
-            listOfNotes.setItemAnimator(new DefaultItemAnimator());
-            listOfNotes.setLayoutManager(new GridLayoutManager(this, NUMBER_OF_COLUMNS_GRID));
-            listOfNotes.setAdapter(listOfNotesAdapter);
+            if (listOfNotesAdapter == null) {
+                noResultFoundEmptyState.setVisibility(View.GONE);
+                listOfNotesAdapter = new NoteListAdapter(this, notes);
+                float spacingInPixels = getResources().getDimension(R.dimen.spacing);
+                listOfNotes.addItemDecoration(new SpacesItemDecoration((int) spacingInPixels));
+                listOfNotes.setItemAnimator(new DefaultItemAnimator());
+                listOfNotes.setLayoutManager(new GridLayoutManager(this, NUMBER_OF_COLUMNS_GRID));
+                listOfNotes.setAdapter(listOfNotesAdapter);
+            } else {
+                listOfNotesAdapter.notifyDataSetChanged();
+            }
         } else {
             noResultFoundEmptyState.setVisibility(View.VISIBLE);
         }
