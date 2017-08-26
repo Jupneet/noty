@@ -19,6 +19,7 @@ import com.jupneetsingh.noty.adapters.NoteListAdapter;
 import com.jupneetsingh.noty.constants.AppConstants;
 import com.jupneetsingh.noty.models.NoteModel;
 import com.jupneetsingh.noty.util.DataAccessSingleton;
+import com.jupneetsingh.noty.util.SpacesItemDecoration;
 
 import java.util.ArrayList;
 
@@ -76,6 +77,8 @@ public class NotesListActivity extends AppCompatActivity {
         if (sizeOfNotes > 0) {
             noResultFoundEmptyState.setVisibility(View.GONE);
             listOfNotesAdapter = new NoteListAdapter(this, notes);
+            float spacingInPixels = getResources().getDimension(R.dimen.spacing);
+            listOfNotes.addItemDecoration(new SpacesItemDecoration((int) spacingInPixels));
             listOfNotes.setItemAnimator(new DefaultItemAnimator());
             listOfNotes.setLayoutManager(new GridLayoutManager(this, NUMBER_OF_COLUMNS_GRID));
             listOfNotes.setAdapter(listOfNotesAdapter);
