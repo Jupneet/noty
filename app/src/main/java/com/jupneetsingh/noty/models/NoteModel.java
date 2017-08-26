@@ -6,6 +6,7 @@ package com.jupneetsingh.noty.models;
 
 public class NoteModel {
 
+    int id;
     String noteTags;
     String noteTitle;
     String noteContent;
@@ -16,6 +17,14 @@ public class NoteModel {
 
     public void setNoteTags(String noteTags) {
         this.noteTags = noteTags;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNoteTitle() {

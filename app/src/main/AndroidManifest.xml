@@ -22,7 +22,8 @@
         <activity
             android:name=".activities.AddEditNoteActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppThemeWithoutActionBar"></activity>
+            android:theme="@style/AppThemeWithoutActionBar"
+            android:windowSoftInputMode="adjustPan"></activity>
 
     </application>
 

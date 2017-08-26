@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 
 import com.jupneetsingh.noty.R;
 import com.jupneetsingh.noty.adapters.NoteListAdapter;
+import com.jupneetsingh.noty.constants.AppConstants;
 import com.jupneetsingh.noty.models.NoteModel;
 import com.jupneetsingh.noty.util.DataAccessSingleton;
 
@@ -49,6 +50,12 @@ public class NotesListActivity extends AppCompatActivity {
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initValues();
     }
 
     private void inflateUI() {
@@ -89,10 +96,15 @@ public class NotesListActivity extends AppCompatActivity {
         }
     }
 
-    private ArrayList<NoteModel> getAllNotes() {
-        return DataAccessSingleton.getsInstance().getAllNotes(this);
+    private void openAddEditActivity() {
+        Intent addEditIntent = new Intent(this, AddEditNoteActivity.class);
+        addEditIntent.putExtra(AppConstants.ADD_ACTION_CODE, true);
+        startActivity(addEditIntent);
     }
 
+    private ArrayList<NoteModel> getAllNotes() {
+        return DataAccessSingleton.getInstance().getAllNotes(this);
+    }
 
     private View.OnClickListener addNoteClickedListener = new View.OnClickListener() {
         @Override
@@ -100,10 +112,5 @@ public class NotesListActivity extends AppCompatActivity {
             openAddEditActivity();
         }
     };
-
-    private void openAddEditActivity() {
-        Intent addEditIntent = new Intent(this, AddEditNoteActivity.class);
-        startActivity(addEditIntent);
-    }
 
 }

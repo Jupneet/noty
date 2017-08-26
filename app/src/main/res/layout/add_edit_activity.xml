@@ -1,23 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingTop="10dp">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <EditText
+                android:id="@+id/eTxtTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="@string/title_hint"
+                android:padding="10dp"
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/eTxtContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/eTxtTitle"
+                android:background="@null"
+                android:hint="@string/content_hint"
+                android:padding="10dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
     <Button
-        android:id="@+id/addAppointment"
+        android:id="@+id/btnEdit"
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="80dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/circle_edit"
         android:gravity="center"
-        android:text="+"
         android:textColor="@android:color/white"
         android:textSize="30sp" />
 
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/black"
+        android:gravity="center"
+        android:text="@string/save_button_text"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:visibility="gone" />
 
 </RelativeLayout>

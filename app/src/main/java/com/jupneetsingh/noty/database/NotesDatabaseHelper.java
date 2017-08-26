@@ -1,7 +1,9 @@
 package com.jupneetsingh.noty.database;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -40,7 +42,7 @@ public class NotesDatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         ArrayList<NoteModel> notesToReturn = new ArrayList<>();
         try {
-            Cursor cursor = db.rawQuery("select * from " + NOTES_TABLE + "'", null);
+            Cursor cursor = db.rawQuery("select * from " + NOTES_TABLE + "", null);
             if (cursor.moveToFirst()) {
                 while (cursor.isAfterLast() == false) {
 
@@ -52,20 +54,52 @@ public class NotesDatabaseHelper extends SQLiteOpenHelper {
                             .getColumnIndex(NOTE_CONTENT));
                     String noteTags = cursor.getString(cursor
                             .getColumnIndex(NOTE_TAGS));
+                    int noteId = cursor.getInt(cursor
+                            .getColumnIndex(NOTES_ID));
 
                     noteModel.setNoteTags(noteTags);
                     noteModel.setNoteTitle(noteTitle);
                     noteModel.setNoteContent(noteContent);
 
                     notesToReturn.add(noteModel);
+
+                    cursor.moveToNext();
                 }
             }
+            cursor.close();
         } catch (Exception e) {
             Log.d("Exception", e.toString());
         } finally {
             db.close();
         }
         return notesToReturn;
+    }
+
+    public void insertNote(ContentValues values) {
+        SQLiteDatabase db = getWritableDatabase();
+        try {
+            db.beginTransaction();
+            db.insertWithOnConflict(NOTES_TABLE, null, values, SQLiteDatabase.CONFLICT_REPLACE);
+            db.setTransactionSuccessful();
+        } catch (SQLException e) {
+        } finally {
+            db.endTransaction();
+            db.close();
+        }
+    }
+
+    public void updateNote(int noteId, ContentValues values) {
+        SQLiteDatabase db = getWritableDatabase();
+        try {
+            db.beginTransaction();
+            db.update(NOTES_TABLE, values, NOTES_ID + "='" + noteId + "'", null);
+            db.setTransactionSuccessful();
+        } catch (SQLException e) {
+            Log.d("ERROR", "EORR");
+        } finally {
+            db.endTransaction();
+            db.close();
+        }
     }
 
 
