@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class NotesDatabaseHelper extends SQLiteOpenHelper {
 
 
-    public static final String NOTES_ID = "id";
+    public static final String NOTES_ID = "_id";
     public static final String NOTE_TAGS = "note_tags";
     public static final String NOTE_TEXT = "note_text";
     public static final String NOTE_TITLE = "note_title";
@@ -57,6 +57,7 @@ public class NotesDatabaseHelper extends SQLiteOpenHelper {
                     int noteId = cursor.getInt(cursor
                             .getColumnIndex(NOTES_ID));
 
+                    noteModel.setId(noteId);
                     noteModel.setNoteTags(noteTags);
                     noteModel.setNoteTitle(noteTitle);
                     noteModel.setNoteContent(noteContent);

@@ -62,7 +62,8 @@ public class AddEditNoteActivity extends AppCompatActivity {
 
     }
 
-    private void updateUIAccordingToState() {
+    private void updateUIAccordingToState()
+    {
         switch (currentState) {
             case ADD:
                 editButton.setVisibility(View.GONE);
@@ -70,8 +71,8 @@ public class AddEditNoteActivity extends AppCompatActivity {
                 break;
             case EDIT:
 
-                editTextContent.setFocusable(true);
-                editTextTitle.setFocusable(true);
+                editTextContent.setEnabled(true);
+                editTextTitle.setEnabled(true);
 
                 editButton.setVisibility(View.GONE);
                 saveButton.setVisibility(View.VISIBLE);
@@ -79,12 +80,12 @@ public class AddEditNoteActivity extends AppCompatActivity {
             case VIEW:
 
                 if (noteTitle != null && noteContent != null) {
-                    editTextTitle.setText(noteContent);
-                    editTextContent.setText(noteTitle);
+                    editTextTitle.setText(noteTitle);
+                    editTextContent.setText(noteContent);
                 }
 
-                editTextContent.setFocusable(false);
-                editTextTitle.setFocusable(false);
+                editTextContent.setEnabled(false);
+                editTextTitle.setEnabled(false);
 
                 editButton.setVisibility(View.VISIBLE);
                 saveButton.setVisibility(View.GONE);
