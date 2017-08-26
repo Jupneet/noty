@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.NotesListActivity"
+            android:name=".activities.NotySplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeWithoutActionBar">
             <intent-filter>
@@ -21,6 +21,12 @@
 
         <activity
             android:name=".activities.AddEditNoteActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeWithoutActionBar"
+            android:windowSoftInputMode="adjustPan"></activity>
+
+        <activity
+            android:name=".activities.NotesListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeWithoutActionBar"
             android:windowSoftInputMode="adjustPan"></activity>
